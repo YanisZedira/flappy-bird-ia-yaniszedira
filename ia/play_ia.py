@@ -29,7 +29,7 @@ def load_genome_and_config():
 
 def play(genome, config):
     pygame.init()
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    screen = pygame.display.set_mode((SCREE_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Flappy Bird - IA')
     clock = pygame.time.Clock()
     font = pygame.font.SysFont('monospace', 20)
@@ -77,15 +77,3 @@ def play(genome, config):
 if __name__ == '__main__':
     genome, config = load_genome_and_config()
     play(genome, config)
-
-    checkpoint_files = sorted(glob.glob('ia/checkpoints/best_gen_*.pkl'))
-    genome_gen10_path = checkpoint_files[10] if len(checkpoint_files) > 10 else checkpoint_files[-1]
-    genome_gen90_path = checkpoint_files[90] if len(checkpoint_files) > 90 else checkpoint_files[-1]
-
-    with open(genome_gen10_path, 'rb') as f:
-        genome_early = pickle.load(f)
-    with open(genome_gen90_path, 'rb') as f:
-        genome_late = pickle.load(f)
-
-    for genome in [genome_early, genome_late]:
-        play(genome, config)

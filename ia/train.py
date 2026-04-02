@@ -12,6 +12,7 @@ CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'neat_config.txt')
 N_GENERATIONS = 100
 
 
+
 def evaluate_genome(genome, config):
     net = neat.nn.FeedForwardNetwork.create(genome, config)
     env = FlappyBirdEnv()
@@ -86,7 +87,7 @@ def run():
     population.add_reporter(checkpointer)
 
     #à verifier avec le prof
-    best = population.run(lambda genomes, config: eval_genomes(genomes, config, population.generation), N_GENERATIONS)
+    best = population.run(eval_genomes,N_GENERATIONS)
 
     genome_path = os.path.join(os.path.dirname(__file__), 'best_genome.pkl')
     with open(genome_path, 'wb') as f:

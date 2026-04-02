@@ -3,7 +3,6 @@ import os
 import statistics
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'game'))
-
 from game_engine import FlappyBirdEnv
 
 def naive_action(state):
@@ -13,7 +12,7 @@ def naive_action(state):
         return 0
     return 1
 
-def run(n_games=50):
+def run(n_games=5):
     env = FlappyBirdEnv()
     scores = []
 
