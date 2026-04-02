@@ -2,13 +2,12 @@ import sys
 import os
 import neat
 import pickle
-import glob
 import pygame
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'game'))
 
 from game_engine import FlappyBirdEnv
-from config import WIDTH, HEIGHT, FPS
+from config import SCREEN_WIDTH, SCREEN_HEIGHT, FPS
 
 GENOME_PATH = os.path.join(os.path.dirname(__file__), 'best_genome.pkl')
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'neat_config.txt')
@@ -29,7 +28,7 @@ def load_genome_and_config():
 
 def play(genome, config):
     pygame.init()
-    screen = pygame.display.set_mode((SCREE_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption('Flappy Bird - IA')
     clock = pygame.time.Clock()
     font = pygame.font.SysFont('monospace', 20)
@@ -63,10 +62,6 @@ def play(genome, config):
             for i, line in enumerate(overlay_lines):
                 surf = font.render(line, True, (255, 255, 255))
                 screen.blit(surf, (10, 10 + i * 24))
-
-            action_label = 'SAUT' if action == 1 else 'ATTENTE'
-            surf = font.render(f'Action : {action_label}', True, (255, 255, 0))
-            screen.blit(surf, (10, 10 + 3 * 24))
 
             pygame.display.flip()
             clock.tick(FPS)
